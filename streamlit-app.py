@@ -40,6 +40,8 @@ def train_model():
   else:
     df = pd.read_csv('customer_churn_mock.csv')
 
+    EXPECTED_FEATURES = ['Age', 'Tenure_Months', 'Monthly_Charge', 'Support_Tickers']
+      
   X = df.drop('Churn', axis=1)
   y = df['Churn']
 
@@ -72,6 +74,8 @@ input_data = pd.DataFrame({
     'Monthly_Charge': [charge],
     'Support_Tickets': [tickets]
 })
+
+input_data = input_data[EXPECTED_FEATURES]
 
 prediction = model.predict(input_data)[0]
 probability = model.predict_proba(input_data)[0][1]
